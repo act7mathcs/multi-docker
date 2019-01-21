@@ -12,7 +12,7 @@ script:
   - docker run act7mathcs/react-test npm run test -- --coverage
 
 # After the test passes, we build a production version of all of our apps. The image name we give each build is the name of the project. The build context is the relative name of the folder that contains the Dockerfile (so it isn't just ., since the Dockerfiles are in subfolders).
-# After building each image, we push them to Dockerhub. Before doing this, we have to log into docker CLI (the id and password are saved as environment variables in Travis CI settings).
+# After building each image, we push them to Dockerhub. Before doing this, we have to log into docker CLI (the id and password are saved as environment variables in Travis CI settings for this repo).
 after_success:
   - docker build -t act7mathcs/multi-client ./client
   - docker build -t act7mathcs/multi-nginx ./nginx
