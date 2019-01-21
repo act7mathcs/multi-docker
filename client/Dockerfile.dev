@@ -1,0 +1,15 @@
+
+# After creating this file, we built it with: docker build -f Dockerfile.dev . (note the .). After it's built, it returns an image id; we then run the container with: docker run <image id>.
+
+FROM node:alpine
+
+WORKDIR /app
+
+COPY ./package.json ./
+
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
+
