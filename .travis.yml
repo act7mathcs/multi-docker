@@ -23,3 +23,18 @@ after_success:
   - docker push act7mathcs/multi-nginx
   - docker push act7mathcs/multi-server
   - docker push act7mathcs/multi-worker
+
+# We created a IAM user in AWS with Elastic Beanstalk privileges, and pasted the AWS keys to Travis CI so it can perform the below deploy.
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-1
+  app: multi-docker
+  env: MultiDocker-evn
+  bucket_name: elasticbeanstalk-us-west-1-834022607075
+  bucket_path: multi-docker
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
+
